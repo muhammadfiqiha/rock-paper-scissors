@@ -2,7 +2,7 @@
 const getComputerChoice = () => {
     const array = ['Rock', 'Paper', 'Scissors']
 
-    return array[Math.floor(Math.random() * 3)]
+    return array[Math.floor(Math.random() * array.length)]
 }
 
 //function to play a single round
