@@ -5,6 +5,7 @@ const getComputerChoice = () => {
     return array[Math.floor(Math.random() * 3)]
 }
 
+//function to play a single round
 const playRound = (computerSelection, playerSelection) => {
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()
 
@@ -25,15 +26,27 @@ const playRound = (computerSelection, playerSelection) => {
 }
 
 const playGame = () => {
-    let player = 0, com = 0, check;
+    let player = 0, com = 0, checkResult;
     for (let i = 0; i < 5; i++){
         let getPlayerChoice = prompt('Choose between rock, paper, or scissors: ')
-        check = playRound(getComputerChoice(), getPlayerChoice);
-        if (check === 0) {
-            ++com;
-        } else if (check === 1) {
-            ++player;
+
+        //check user input
+        if ( 
+            (getPlayerChoice.toLowerCase() === 'rock') ||
+            (getPlayerChoice.toLowerCase() === 'paper') ||
+            (getPlayerChoice.toLowerCase() === 'scissors')
+        ) {
+            checkResult = playRound(getComputerChoice(), getPlayerChoice);
+            if (checkResult === 0) {
+                ++com;
+            } else if (checkResult === 1) {
+                ++player;
+            } else {
+                --i;
+            }
+            console.log('Score: You ' + player + '-' + com + ' Computer')
         } else {
+            alert('Please insert between rock, paper, or scissors!')
             --i;
         }
     }
@@ -41,7 +54,7 @@ const playGame = () => {
     if(com > player) {
         console.log('Game Ended! You Lose with score ' + player + '-' + com)
     } else {
-        console.log('Game Ended! You Won with score ' + player + '-' + com)
+        console.log('Game Ended! You Win with score ' + player + '-' + com)
     }
 }
 
